@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class table="Client" name="com.uvsq.colinebintou.ecommerce.modele.Client">
+       <id name="id" type="int"> 
+<column name="ID_CLIENT"/> <generator class="increment"/> 
+       </id> 
+       <property name="login" type="java.lang.String"> <column name="LOGIN"/> </property>
+      <property name="password" type="java.lang.String"> <column name="PASSWORD"/> </property> 
+	  <property name="nom" type="java.lang.String"> <column name="NAME"/> </property>
+ 	  <set name="paniers" table="Panier" inverse="true" cascade="all" lazy="false">
+ 	   <key>  
+			<column name="ID_CLIENT" not-null="true"/>
+	   </key>
+	   <one-to-many class="com.uvsq.colinebintou.ecommerce.modele.IPanier"/>
+	   </set> 
+</class>
+</hibernate-mapping>

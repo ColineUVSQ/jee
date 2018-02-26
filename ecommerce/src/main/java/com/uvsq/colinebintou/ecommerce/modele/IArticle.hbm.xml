@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class table="Article" name="com.uvsq.colinebintou.ecommerce.modele.IArticle">
+       <id name="id" type="int"> 
+<column name="ID"/> <generator class="increment"/> 
+       </id> 
+       <discriminator column="TYPE_ARTICLE" type="java.lang.String"/>
+       <subclass name="com.uvsq.colinebintou.ecommerce.modele.Article">
+       		<property name="nom" type="java.lang.String"> <column name="NOM"/> </property>
+       		<property name="prix" type="double"> <column name="PRIX"/> </property> 
+	   		<property name="quantite" type="int"> <column name="QUANTITE"/> </property> 
+	   		<subclass name="com.uvsq.colinebintou.ecommerce.modele.Livre" discriminator-value="LIVRE">
+	   				  <property name="auteur" type="java.lang.String"> <column name="AUTEUR"/> </property> 
+	   		</subclass>
+	   		<subclass name="com.uvsq.colinebintou.ecommerce.modele.CD" discriminator-value="CD">
+	   				<property name="artiste" type="java.lang.String"> <column name="ARTISTE"/> </property>
+	   		</subclass>
+	   		<subclass name="com.uvsq.colinebintou.ecommerce.modele.DVD" discriminator-value="DVD">
+	   				<property name="realisateur" type="java.lang.String"> <column name="REALISATEUR"/> </property>
+	   		</subclass>
+	   </subclass>
+</class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+			"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+<bean name="/creationArt" class="com.uvsq.colinebintou.ecommerce.action.CreationArtAction" singleton="false">
+	<property name="serviceGestionLivre"><ref bean="serviceGestionLivre"/></property>
+	<property name="serviceGestionCD"><ref bean="serviceGestionCD"/></property>
+	<property name="serviceGestionDVD"><ref bean="serviceGestionDVD"/></property>
+</bean>
+
+<bean name="/afficheLivres" class="com.uvsq.colinebintou.ecommerce.action.AffichageLivresAction" singleton="false">
+	<property name="service"><ref bean="serviceRecLivre"/></property>
+</bean>
+
+<bean name="/afficheCD" class="com.uvsq.colinebintou.ecommerce.action.AffichageCdAction" singleton="false">
+	<property name="service"><ref bean="serviceRecCD"/></property>
+</bean>
+
+<bean name="/afficheDVD" class="com.uvsq.colinebintou.ecommerce.action.AffichageDvdAction" singleton="false">
+	<property name="service"><ref bean="serviceRecDVD"/></property>
+</bean>
+
+<bean name="/inscription" class="com.uvsq.colinebintou.ecommerce.action.InscriptionAction" singleton="false">
+	<property name="serviceClient"><ref bean="serviceLoginClient"/></property>
+	<property name="serviceAdmin"><ref bean="serviceLoginAdmin"/></property>
+</bean>
+
+<bean name="/connexion" class="com.uvsq.colinebintou.ecommerce.action.ConnexionAction" singleton="false">
+	<property name="serviceClient"><ref bean="serviceLoginClient"/></property>
+	<property name="serviceAdmin"><ref bean="serviceLoginAdmin"/></property>
+</bean>
+<!-- <import resource="/beans.xml"/> -->
+</beans>

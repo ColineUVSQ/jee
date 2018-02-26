@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+         http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>
+    	<form-bean name="param-creationArt" type="com.uvsq.colinebintou.ecommerce.form.CreationArtForm"></form-bean>
+    	<form-bean name="param-inscription" type="com.uvsq.colinebintou.ecommerce.form.InscriptionForm"></form-bean>
+    	<form-bean name="param-connexion" type="com.uvsq.colinebintou.ecommerce.form.ConnexionForm"></form-bean>
+    </form-beans>
+
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>
+ 
+    </global-exceptions>
+
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+     
+    </global-forwards>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+       <action path="/creationArt" type="org.springframework.web.struts.DelegatingActionProxy" name="param-creationArt" validate="false">
+       		<forward name="accueil" path="/adminHome.html"/>
+       </action>
+       <action path="/afficheLivres" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+       		<forward name="page_livres" path="/Livres.jsp"></forward>
+       </action>
+       <action path="/afficheCD" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+       		<forward name="page_cd" path="/CD.jsp"></forward>
+       </action>
+       <action path="/afficheDVD" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+       		<forward name="page_dvd" path="/DVD.jsp"></forward>
+       </action>
+       <action path="/inscription" type="org.springframework.web.struts.DelegatingActionProxy" name="param-inscription" validate="false">
+       		<forward name="accueilClient" path="/index.jsp"></forward>
+       		<forward name="accueilAdmin" path="/adminHome.html"></forward>
+       		<forward name="erreur" path="/Login.jsp"></forward>
+       </action>
+       <action path="/connexion" type="org.springframework.web.struts.DelegatingActionProxy" name="param-connexion" validate="false">
+       		<forward name="accueilClient" path="/index.jsp"></forward>
+       		<forward name="accueilAdmin" path="/adminHome.html"></forward>
+       		<forward name="erreur" path="/Login.jsp"></forward>
+       </action>
+<!--  quand on déclare une action, il faut faire référence à la classe DelegatingActionProxy, et plus la classe de l'action -->        
+<!--  exemple : <action path="/..." type="org.springframework.web.struts.DelegatingActionProxy"> -->     
+    </action-mappings>
+
+  <!-- ========== Ressources de definitions de messages =========================== -->
+  <message-resources parameter="MessageResources" />
+
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+	<set-property property="contextConfigLocation" value="/WEB-INF/action-servlet.xml"></set-property>
+	</plug-in>
+	
+</struts-config>

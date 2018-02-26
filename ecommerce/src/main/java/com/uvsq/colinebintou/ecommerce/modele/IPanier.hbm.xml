@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class table="Panier" name="com.uvsq.colinebintou.ecommerce.modele.IPanier">
+       <id name="id" type="int"> 
+<column name="ID"/> <generator class="increment"/> 
+       </id>
+       <discriminator column="TYPE" type="java.lang.String"/>
+       <subclass name="com.uvsq.colinebintou.ecommerce.modele.Panier" discriminator-value="PANIER"> 
+       		<property name="paye" type="java.lang.Boolean"> <column name="PAYE"/> </property>
+	   		<many-to-one name="client" class="com.uvsq.colinebintou.ecommerce.modele.Client"> 
+				<column name="ID_CLIENT" not-null="true"/>
+			</many-to-one>	   		
+	   		<set name="articles" table="panierarticles" cascade="all" lazy="false">
+	   		<key> 
+				<column name="ID_PANIER" not-null="true"/>
+		   </key>
+		   <many-to-many entity-name="com.uvsq.colinebintou.ecommerce.modele.Article">
+				<column name="ID_ARTICLE" not-null="true"/>
+			</many-to-many>
+			</set>
+		</subclass>
+</class>
+</hibernate-mapping>
