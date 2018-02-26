@@ -12,6 +12,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.uvsq.colinebintou.ecommerce.modele.Article;
 import com.uvsq.colinebintou.ecommerce.modele.Client;
 import com.uvsq.colinebintou.ecommerce.modele.Livre;
 import com.uvsq.colinebintou.ecommerce.modele.Panier;
@@ -43,18 +44,18 @@ public class AjoutPanierAction extends Action {
 		System.out.println(request.getParameter("id"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		System.out.println(id);
-		Livre l = (Livre) serviceArt.findById(id);
-		System.out.println(l);
+		Article a = serviceArt.findById(id);
+		System.out.println(a);
 		
 		Panier p = (Panier) maSession.getAttribute("sonPanier");
 		p.setClient(c);
-		service.ajoutPanier(l, p);
+		service.ajoutPanier(a, p);
 		System.out.println("je suis ici");
 		System.out.println(p);
-		serviceModif.modifArticle(l, l.getQuantite()-1);
+		serviceModif.modifArticle(a, a.getQuantite()-1);
 		maSession.setAttribute("sonPanier", p);
 		maSession.setAttribute("client", c);
 		
-		return mapping.findForward("livres");
+		return mapping.findForward("accueil");
 	}
 }

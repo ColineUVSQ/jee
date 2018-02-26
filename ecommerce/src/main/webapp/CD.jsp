@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %> 
+<%@ page import="java.util.Iterator" %> 
+
 <%@ page import="com.uvsq.colinebintou.ecommerce.modele.*" %> 
 <%@ page import="com.uvsq.colinebintou.ecommerce.service.*" %>
 <!DOCTYPE html>
 <jsp:useBean id="lesCD" class ="com.uvsq.colinebintou.ecommerce.service.ServiceRechercheCDImpl" scope="session"></jsp:useBean>
+<jsp:useBean id="client" class ="com.uvsq.colinebintou.ecommerce.modele.Client" scope="session"></jsp:useBean>
+<jsp:useBean id="sonPanier" class="com.uvsq.colinebintou.ecommerce.modele.Panier" scope="session"></jsp:useBean>
 
 <html lang="en">
 
@@ -17,6 +21,7 @@
 	<title>coline&Bintou</title>
 
 	<!-- Google font -->
+	<link type="text/css" rel="stylesheet" href="css/css-perso.css" />
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
@@ -55,7 +60,7 @@
 				<div class="pull-left">
 					<!-- Logo -->
 					<div class="header-logo">
-						<a class="logo" href="index.html">
+						<a class="logo" href="index.jsp">
 							<h1>Coline&Bintou</h1>
 						</a>
 					</div>
@@ -76,6 +81,7 @@
 					<!-- /Search -->
 				</div>
 				<div class="pull-right">
+				<h4><% if(client.getNom() != null) {out.println("Bonjour, "+client.getNom());} %></h4>
 					<ul class="header-btns">
 						<!-- Account -->
 						<li class="header-account dropdown default-dropdown">
@@ -88,8 +94,8 @@
 							
 							<ul class="custom-menu">
 							
-								<li><a href="Login.html"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
-								<li><a href="Login.html"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
 							</ul>
 						</li>
 						<!-- /Account -->
@@ -99,37 +105,22 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
+									<span class="qty"><%out.println(sonPanier.getArticles().size());%></span>
 								</div>
 								
 							</a>
 							<div class="custom-menu">
 								<div id="shopping-cart">
 									<div class="shopping-cart-list">
-										<div class="product product-widget">
-											<div class="product-thumb">
-												<img src="./img/thumb-product01.jpg" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-											</div>
-											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
-										</div>
-										<div class="product product-widget">
-											<div class="product-thumb">
-												<img src="./img/thumb-product01.jpg" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-											</div>
-											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
-										</div>
-									</div>
+										<% 
+									Iterator<IArticle> iterator = sonPanier.getArticles().iterator();
+									while (iterator.hasNext()) {
+									      Article myCurrentElement = (Article) iterator.next();
+									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros<span class='qty'>x"+myCurrentElement.getQuantite()+"</span></h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
+										}%>
 									<div class="shopping-cart-btns">
 										
-										<a href="panier.html" class="primary-btn"> Acheter <i class="fa fa-arrow-circle-right"></i></a>
+										<form action="afficherPanier.do" method="post"><button type="submit" class="primary-btn"> Acheter <i class="fa fa-arrow-circle-right"></i></button></form>
 									</div>
 								</div>
 							</div>
@@ -164,9 +155,10 @@
 					<div ALIGN="CENTER">
 					<h3>
 						<ul class="menu-list">
-						<li><a href="Livres.html">Collections Livres</a></li>
-						<li><a href="CD.html">Collections CD</a></li>
-						<li><a href="DVD.html">Collections DVD</a></li>
+						<li><form action="afficheLivres.do" method="post"><button type="submit"  class="perso">Collections Livres</button></form></li>
+						<li><form action="afficheCD.do" method="post"><button type="submit" class="perso">Collections CD</button></form></li>
+						<li><form action="afficheDVD.do" method="post"><button type="submit" class="perso">Collections DVD</button></form></li>
+						
 						</ul>
 				    </h3>
 				   </div>
@@ -191,7 +183,8 @@
 
 				<!-- Product Single -->
 				<%for (CD c : cd){ 
-				out.println("<div class='col-md-3 col-sm-6 col-xs-6'> <div class='product product-single'> <div class='product-body'> <h3 class='product-price'>"+c.getPrix()+" Euros</h3><h3 class='product-name'>"+c.getNom()+"</h3><h5 class='product-auteur'>de "+c.getArtiste()+"</h5><h5 class='product-quantite'>Quantite :"+c.getQuantite()+"</h5><div class='product-btns'> <button class='primary-btn add-to-cart'><i class='fa fa-shopping-cart'></i> Ajouter au panier</button></div></div></div></div>");
+				int id = c.getId();
+				out.println("<div class='col-md-3 col-sm-6 col-xs-6'> <div class='product product-single'> <div class='product-body'> <h3 class='product-price'>"+c.getPrix()+" Euros</h3><h3 class='product-name'>"+c.getNom()+"</h3><h5 class='product-auteur'>de "+c.getArtiste()+"</h5><h5 class='product-quantite'>Quantite :"+c.getQuantite()+"</h5><div class='product-btns'><form action='ajoutPanier.do?id="+id+"' method='post'><button class='panier' type='submit' class=' btn btn-danger add-to-cart'><i class='fa fa-shopping-cart'></i>Ajouter au panier</button></form></div></div></div></div>");
 				}%>
 				<!-- /Product Single -->
 			</div>

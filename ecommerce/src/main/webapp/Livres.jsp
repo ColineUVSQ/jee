@@ -23,6 +23,7 @@
 	<title>coline&Bintou</title>
 
 	<!-- Google font -->
+	<link type="text/css" rel="stylesheet" href="css/css-perso.css" />
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
@@ -82,6 +83,7 @@
 					<!-- /Search -->
 				</div>
 				<div class="pull-right">
+	<h4><% if(client.getNom() != null) {out.println("Bonjour, "+client.getNom());} %></h4>
 					<ul class="header-btns">
 						<!-- Account -->
 						<li class="header-account dropdown default-dropdown">
@@ -105,7 +107,7 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
+									<span class="qty"><%out.println(sonPanier.getArticles().size());%></span>
 								</div>
 								
 							</a>
@@ -117,7 +119,7 @@
 									Iterator<IArticle> iterator = sonPanier.getArticles().iterator();
 									while (iterator.hasNext()) {
 									      Article myCurrentElement = (Article) iterator.next();
-									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros<span class='qty'>x3</span></h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
+									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros<span class='qty'>x"+myCurrentElement.getQuantite()+"</span></h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
 										}%>
 									<div class="shopping-cart-btns">
 										
@@ -156,9 +158,10 @@
 					<div ALIGN="CENTER">
 					<h3>
 						<ul class="menu-list">
-						<li><a href="Livres.html">Collections Livres</a></li>
-						<li><a href="CD.html">Collections CD</a></li>
-						<li><a href="DVD.html">Collections DVD</a></li>
+						<li><form action="afficheLivres.do" method="post"><button type="submit"  class="perso">Collections Livres</button></form></li>
+						<li><form action="afficheCD.do" method="post"><button type="submit" class="perso">Collections CD</button></form></li>
+						<li><form action="afficheDVD.do" method="post"><button type="submit" class="perso">Collections DVD</button></form></li>
+						
 						</ul>
 				    </h3>
 				   </div>
@@ -186,7 +189,7 @@
 				//HttpSession session =  request.getSession(true);
 				//session.setAttribute("livre", l);
 				int id = l.getId();
-				out.println("<div class='col-md-3 col-sm-6 col-xs-6'> <div class='product product-single'> <div class='product-body'> <h3 class='product-price'>"+l.getPrix()+" Euros</h3><h3 class='product-name'>"+l.getNom()+"</h3><h5 class='product-auteur'>de "+l.getAuteur()+"</h5><h5 class='product-quantite'>Quantite :"+l.getQuantite()+"</h5><div class='product-btns'><form action='ajoutPanierLivre.do?id="+id+"' method='post'><button class='panier' type='submit' class=' btn btn-danger add-to-cart'><i class='fa fa-shopping-cart'></i>Ajouter au panier</button></form></div></div></div></div>");
+				out.println("<div class='col-md-3 col-sm-6 col-xs-6'> <div class='product product-single'> <div class='product-body'> <h3 class='product-price'>"+l.getPrix()+" Euros</h3><h3 class='product-name'>"+l.getNom()+"</h3><h5 class='product-auteur'>de "+l.getAuteur()+"</h5><h5 class='product-quantite'>Quantite :"+l.getQuantite()+"</h5><div class='product-btns'><form action='ajoutPanier.do?id="+id+"' method='post'><button class='panier' type='submit' class=' btn btn-danger add-to-cart'><i class='fa fa-shopping-cart'></i>Ajouter au panier</button></form></div></div></div></div>");
 				}%>
 				<!-- /Product Single -->
 			</div>

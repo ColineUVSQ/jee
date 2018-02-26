@@ -86,18 +86,18 @@
 							
 							<ul class="custom-menu">
 							
-								<li><a href="Login.html"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
-								<li><a href="Login.html"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
 							</ul>
 						</li>
 						<!-- /Account -->
 
 						<!-- Cart -->
-						<li class="header-cart dropdown default-dropdown">
+						<!-- <li class="header-cart dropdown default-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
+									<span class="qty"></span>
 								</div>
 								
 							</a>
@@ -131,7 +131,7 @@
 									</div>
 								</div>
 							</div>
-						</li>
+						</li> -->
 						<!-- /Cart -->
 
 						<!-- Mobile nav toggle-->
@@ -162,9 +162,9 @@
 					<div ALIGN="CENTER">
 					<h3>
 						<ul class="menu-list">
-						<li><a href="Livres.html">Collections Livres</a></li>
-						<li><a href="CD.html">Collections CD</a></li>
-						<li><a href="DVD.html">Collections DVD</a></li>
+						<li><form action="afficheLivres.do" method="post"><button type="submit"  class="perso">Collections Livres</button></form></li>
+						<li><form action="afficheCD.do" method="post"><button type="submit" class="perso">Collections CD</button></form></li>
+						<li><form action="afficheDVD.do" method="post"><button type="submit" class="perso">Collections DVD</button></form></li>
 						</ul>
 				    </h3>
 				   </div>

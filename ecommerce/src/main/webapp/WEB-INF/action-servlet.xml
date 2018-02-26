@@ -32,7 +32,7 @@
 	<property name="servicePanier"><ref bean="servicePanier"/></property>
 </bean>
 
-<bean name="/ajoutPanierLivre" class="com.uvsq.colinebintou.ecommerce.action.AjoutPanierAction" singleton="false">
+<bean name="/ajoutPanier" class="com.uvsq.colinebintou.ecommerce.action.AjoutPanierAction" singleton="false">
 	<property name="service"><ref bean="servicePanier"/></property>
 	<property name="serviceArt"><ref bean="serviceRecArt"/></property>
 	<property name="serviceModif"><ref bean="serviceGestionArt"/></property>
