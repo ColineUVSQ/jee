@@ -50,7 +50,7 @@
 
     <action-mappings>
        <action path="/creationArt" type="org.springframework.web.struts.DelegatingActionProxy" name="param-creationArt" validate="false">
-       		<forward name="accueil" path="/adminHome.html"/>
+       		<forward name="accueil" path="/adminHome.jsp"/>
        </action>
        <action path="/afficheLivres" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
        		<forward name="page_livres" path="/Livres.jsp"></forward>
@@ -63,13 +63,16 @@
        </action>
        <action path="/inscription" type="org.springframework.web.struts.DelegatingActionProxy" name="param-inscription" validate="false">
        		<forward name="accueilClient" path="/index.jsp"></forward>
-       		<forward name="accueilAdmin" path="/adminHome.html"></forward>
+       		<forward name="accueilAdmin" path="/adminHome.jsp"></forward>
        		<forward name="erreur" path="/Login.jsp"></forward>
        </action>
        <action path="/connexion" type="org.springframework.web.struts.DelegatingActionProxy" name="param-connexion" validate="false">
        		<forward name="accueilClient" path="/index.jsp"></forward>
-       		<forward name="accueilAdmin" path="/adminHome.html"></forward>
+       		<forward name="accueilAdmin" path="/adminHome.jsp"></forward>
        		<forward name="erreur" path="/Login.jsp"></forward>
+       </action>
+       <action path="/ajoutPanierLivre" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+       		<forward name="livres" path="/Livres.jsp"></forward>
        </action>
 <!--  quand on déclare une action, il faut faire référence à la classe DelegatingActionProxy, et plus la classe de l'action -->        
 <!--  exemple : <action path="/..." type="org.springframework.web.struts.DelegatingActionProxy"> -->     

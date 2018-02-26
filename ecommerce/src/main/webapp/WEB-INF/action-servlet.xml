@@ -29,5 +29,11 @@
 	<property name="serviceClient"><ref bean="serviceLoginClient"/></property>
 	<property name="serviceAdmin"><ref bean="serviceLoginAdmin"/></property>
 </bean>
+
+<bean name="/ajoutPanierLivre" class="com.uvsq.colinebintou.ecommerce.action.AjoutPanierAction" singleton="false">
+	<property name="service"><ref bean="servicePanier"/></property>
+	<property name="serviceClient"><ref bean="serviceLoginClient"/></property>
+	<property name="serviceArt"><ref bean="serviceRecArt"/></property>
+</bean>
 <!-- <import resource="/beans.xml"/> -->
 </beans>

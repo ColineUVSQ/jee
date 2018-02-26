@@ -74,7 +74,7 @@
 					<!-- /Search -->
 				</div>
 				<div class="pull-right">
-												<h4><% if(client.getNom() != null) {out.println("Bonjour, "+client.getNom());} %></h4>
+						<h4><% if(client.getNom() != null) {out.println("Bonjour, "+client.getNom());} %></h4>
 					<ul class="header-btns">
 						<!-- Account -->
 						<li class="header-account dropdown default-dropdown">

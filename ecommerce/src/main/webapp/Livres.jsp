@@ -3,8 +3,11 @@
 <%@ page import="java.util.ArrayList" %> 
 <%@ page import="com.uvsq.colinebintou.ecommerce.modele.*" %> 
 <%@ page import="com.uvsq.colinebintou.ecommerce.service.*" %> 
+<%@ page import="javax.servlet.http.HttpSession" %> 
 <!DOCTYPE html>
 <jsp:useBean id="lesLivres" class ="com.uvsq.colinebintou.ecommerce.service.ServiceRechercheLivreImpl" scope="session"></jsp:useBean>
+<jsp:useBean id="client" class ="com.uvsq.colinebintou.ecommerce.modele.Client" scope="session"></jsp:useBean>
+<jsp:useBean id="livre" class="com.uvsq.colinebintou.ecommerce.modele.Livre" scope="session"></jsp:useBean>
 
 <html lang="en">
 
@@ -191,7 +194,10 @@
 
 				<!-- Product Single -->
 				<%for (Livre l : livres){ 
-				out.println("<div class='col-md-3 col-sm-6 col-xs-6'> <div class='product product-single'> <div class='product-body'> <h3 class='product-price'>"+l.getPrix()+" Euros</h3><h3 class='product-name'>"+l.getNom()+"</h3><h5 class='product-auteur'>de "+l.getAuteur()+"</h5><h5 class='product-quantite'>Quantite :"+l.getQuantite()+"</h5><div class='product-btns'> <button class='primary-btn add-to-cart'><i class='fa fa-shopping-cart'></i> Ajouter au panier</button></div></div></div></div>");
+				//HttpSession session =  request.getSession(true);
+				//session.setAttribute("livre", l);
+				int id = l.getId();
+				out.println("<div class='col-md-3 col-sm-6 col-xs-6'> <div class='product product-single'> <div class='product-body'> <h3 class='product-price'>"+l.getPrix()+" Euros</h3><h3 class='product-name'>"+l.getNom()+"</h3><h5 class='product-auteur'>de "+l.getAuteur()+"</h5><h5 class='product-quantite'>Quantite :"+l.getQuantite()+"</h5><div class='product-btns'><form action='ajoutPanierLivre.do?id="+id+"' method='post'><button class='panier' type='submit' class=' btn btn-danger add-to-cart'><i class='fa fa-shopping-cart'></i>Ajouter au panier</button></form></div></div></div></div>");
 				}%>
 				<!-- /Product Single -->
 			</div>

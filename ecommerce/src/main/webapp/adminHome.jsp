@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="com.uvsq.colinebintou.ecommerce.modele.*" %> 
+<!DOCTYPE html>
+<jsp:useBean id="admin" class ="com.uvsq.colinebintou.ecommerce.modele.Administrateur" scope="session"></jsp:useBean>
+
 <html lang="en">
 
 <head>
@@ -61,6 +67,8 @@
 					<!-- /Search -->
 				</div>
 				<div class="pull-right">
+					<h4><% if(admin.getNom() != null) {out.println("Bonjour, "+admin.getNom());} %></h4>
+					
 					<ul class="header-btns">
 						<!-- Account -->
 						<li class="header-account dropdown default-dropdown">

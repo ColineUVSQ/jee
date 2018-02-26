@@ -34,4 +34,8 @@ public class ServiceLoginClientImpl implements ServiceLoginClient{
 		return clientDAO.findAll();
 	}
 
+	public Client updateClient(Client c) {
+		return clientDAO.update(c);
+	}
+
 }

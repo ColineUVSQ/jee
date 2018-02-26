@@ -9,4 +9,5 @@ public interface ServiceLoginClient {
 	Client isValid(String login, String password);
 	Client changePassword(Client c, String newPass);
 	ArrayList<Client> findAllClients();
+	Client updateClient(Client c);
 }

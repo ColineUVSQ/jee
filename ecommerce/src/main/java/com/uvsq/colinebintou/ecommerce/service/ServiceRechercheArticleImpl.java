@@ -24,4 +24,8 @@ public class ServiceRechercheArticleImpl implements ServiceRechercheArticle {
 		return artDao.findAllDispo();
 	}
 
+	public Article findById(int id) {
+		return artDao.findbyId(id);
+	}
+
 }
