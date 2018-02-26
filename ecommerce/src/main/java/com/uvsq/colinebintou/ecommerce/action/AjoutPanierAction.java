@@ -20,12 +20,14 @@ import com.uvsq.colinebintou.ecommerce.modele.IPanier;
 import com.uvsq.colinebintou.ecommerce.modele.Livre;
 import com.uvsq.colinebintou.ecommerce.modele.Panier;
 import com.uvsq.colinebintou.ecommerce.service.ServiceLoginClient;
+import com.uvsq.colinebintou.ecommerce.service.ServiceModifArticleImpl;
 import com.uvsq.colinebintou.ecommerce.service.ServicePanierImpl;
 import com.uvsq.colinebintou.ecommerce.service.ServiceRechercheArticleImpl;
 
 public class AjoutPanierAction extends Action {
 	private ServicePanierImpl service;
 	private ServiceRechercheArticleImpl serviceArt;
+	private ServiceModifArticleImpl serviceModif;
 	private ServiceLoginClient serviceClient;
 
 	public void setService(ServicePanierImpl service) {
@@ -38,6 +40,10 @@ public class AjoutPanierAction extends Action {
 
 	public void setServiceArt(ServiceRechercheArticleImpl serviceArt) {
 		this.serviceArt = serviceArt;
+	}
+
+	public void setServiceModif(ServiceModifArticleImpl serviceModif) {
+		this.serviceModif = serviceModif;
 	}
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -57,6 +63,7 @@ public class AjoutPanierAction extends Action {
 		      if(!myCurrentElement.isPaye()) {
 		    	  dejaPanier = true;
 				  service.ajoutPanier(l, myCurrentElement);
+				  serviceModif.modifArticle(l, l.getQuantite()-1);
 		      }
 		}
 		if(dejaPanier == false) {
@@ -69,6 +76,7 @@ public class AjoutPanierAction extends Action {
 			maSession.setAttribute("client", c);
 			
 			service.ajoutPanier(l, p);
+			serviceModif.modifArticle(l, l.getQuantite()-1);
 		}
 		
 		return mapping.findForward("livres");

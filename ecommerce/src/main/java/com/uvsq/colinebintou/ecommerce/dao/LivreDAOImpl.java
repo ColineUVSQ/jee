@@ -33,7 +33,7 @@ public class LivreDAOImpl extends HibernateDaoSupport implements LivreDAO{
 	}
 
 	public ArrayList<Livre> findAll() {
-		return (ArrayList<Livre>) getHibernateTemplate().find("from Article where type_article=?","LIVRE");
+		return (ArrayList<Livre>) getHibernateTemplate().find("from Article where type_article=? and quantite>0","LIVRE");
 	}
 
 }

@@ -34,7 +34,7 @@ public class DvdDAOImpl extends HibernateDaoSupport implements DvdDAO {
 	}
 
 	public ArrayList<DVD> findAll() {
-		return (ArrayList<DVD>) getHibernateTemplate().find("from Article where type_article=?","DVD");
+		return (ArrayList<DVD>) getHibernateTemplate().find("from Article where type_article=? and quantite>0","DVD");
 	}
 
 }

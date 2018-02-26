@@ -33,7 +33,7 @@ public class CdDAOImpl extends HibernateDaoSupport implements CdDAO {
 	}
 
 	public ArrayList<CD> findAll() {
-		return (ArrayList<CD>) getHibernateTemplate().find("from Article where type_article=?","CD");
+		return (ArrayList<CD>) getHibernateTemplate().find("from Article where type_article=? and quantite>0","CD");
 
 	}
 
