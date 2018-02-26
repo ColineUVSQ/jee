@@ -3,6 +3,7 @@
 <%@ page import="com.uvsq.colinebintou.ecommerce.modele.*" %> 
 <!DOCTYPE html>
 <jsp:useBean id="client" class ="com.uvsq.colinebintou.ecommerce.modele.Client" scope="session"></jsp:useBean>
+<jsp:useBean id="sonPanier" class="com.uvsq.colinebintou.ecommerce.modele.Panier" scope="session"></jsp:useBean>
 
 <html lang="en">
 

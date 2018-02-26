@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %> 
+<%@ page import="java.util.Set" %> 
+<%@ page import="java.util.Iterator" %> 
+
 <%@ page import="com.uvsq.colinebintou.ecommerce.modele.*" %> 
 <%@ page import="com.uvsq.colinebintou.ecommerce.service.*" %> 
 <%@ page import="javax.servlet.http.HttpSession" %> 
 <!DOCTYPE html>
 <jsp:useBean id="lesLivres" class ="com.uvsq.colinebintou.ecommerce.service.ServiceRechercheLivreImpl" scope="session"></jsp:useBean>
 <jsp:useBean id="client" class ="com.uvsq.colinebintou.ecommerce.modele.Client" scope="session"></jsp:useBean>
-<jsp:useBean id="livre" class="com.uvsq.colinebintou.ecommerce.modele.Livre" scope="session"></jsp:useBean>
+<jsp:useBean id="sonPanier" class="com.uvsq.colinebintou.ecommerce.modele.Panier" scope="session"></jsp:useBean>
 
 <html lang="en">
 
@@ -58,7 +61,7 @@
 				<div class="pull-left">
 					<!-- Logo -->
 					<div class="header-logo">
-						<a class="logo" href="index.html">
+						<a class="logo" href="index.jsp">
 							<h1>Coline&Bintou</h1>
 						</a>
 					</div>
@@ -91,8 +94,8 @@
 							
 							<ul class="custom-menu">
 							
-								<li><a href="Login.html"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
-								<li><a href="Login.html"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
 							</ul>
 						</li>
 						<!-- /Account -->
@@ -109,30 +112,16 @@
 							<div class="custom-menu">
 								<div id="shopping-cart">
 									<div class="shopping-cart-list">
-										<div class="product product-widget">
-											<div class="product-thumb">
-												<img src="./img/thumb-product01.jpg" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-											</div>
-											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
-										</div>
-										<div class="product product-widget">
-											<div class="product-thumb">
-												<img src="./img/thumb-product01.jpg" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-											</div>
-											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
-										</div>
-									</div>
+									
+									<% 
+									Iterator<IArticle> iterator = sonPanier.getArticles().iterator();
+									while (iterator.hasNext()) {
+									      Article myCurrentElement = (Article) iterator.next();
+									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros<span class='qty'>x3</span></h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
+										}%>
 									<div class="shopping-cart-btns">
 										
-										<a href="panier.html" class="primary-btn"> Acheter <i class="fa fa-arrow-circle-right"></i></a>
+										<form action="afficherPanier.do" method="post"><button type="submit" class="primary-btn"> Acheter <i class="fa fa-arrow-circle-right"></i></button></form>
 									</div>
 								</div>
 							</div>

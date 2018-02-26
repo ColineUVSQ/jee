@@ -15,12 +15,15 @@ import org.apache.struts.action.ActionMapping;
 import com.uvsq.colinebintou.ecommerce.form.ConnexionForm;
 import com.uvsq.colinebintou.ecommerce.modele.Administrateur;
 import com.uvsq.colinebintou.ecommerce.modele.Client;
+import com.uvsq.colinebintou.ecommerce.modele.Panier;
 import com.uvsq.colinebintou.ecommerce.service.ServiceLoginAdminImpl;
 import com.uvsq.colinebintou.ecommerce.service.ServiceLoginClientImpl;
+import com.uvsq.colinebintou.ecommerce.service.ServicePanierImpl;
 
 public class ConnexionAction extends Action{
 	private ServiceLoginClientImpl serviceClient = null;
 	private ServiceLoginAdminImpl serviceAdmin = null;
+	private ServicePanierImpl servicePanier = null;
 
 	public void setServiceClient(ServiceLoginClientImpl serviceClient) {
 		this.serviceClient = serviceClient;
@@ -28,6 +31,10 @@ public class ConnexionAction extends Action{
 
 	public void setServiceAdmin(ServiceLoginAdminImpl serviceAdmin) {
 		this.serviceAdmin = serviceAdmin;
+	}
+
+	public void setServicePanier(ServicePanierImpl servicePanier) {
+		this.servicePanier = servicePanier;
 	}
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -51,8 +58,13 @@ public class ConnexionAction extends Action{
 				return mapping.findForward("erreur");
 			}
 			else {
+				Panier p = new Panier();
+				p.setClient(c);
+				p.setPaye(false);
+				servicePanier.creerPanier(p);
 				HttpSession maSession = request.getSession(true); // si pas de session, en cree une
 				maSession.setAttribute("client", c);	
+				maSession.setAttribute("sonPanier", p);
 				return mapping.findForward("accueilClient");
 			}
 		}

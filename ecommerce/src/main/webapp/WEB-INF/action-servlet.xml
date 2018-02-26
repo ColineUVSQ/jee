@@ -23,18 +23,26 @@
 <bean name="/inscription" class="com.uvsq.colinebintou.ecommerce.action.InscriptionAction" singleton="false">
 	<property name="serviceClient"><ref bean="serviceLoginClient"/></property>
 	<property name="serviceAdmin"><ref bean="serviceLoginAdmin"/></property>
+	<property name="servicePanier"><ref bean="servicePanier"/></property>	
 </bean>
 
 <bean name="/connexion" class="com.uvsq.colinebintou.ecommerce.action.ConnexionAction" singleton="false">
 	<property name="serviceClient"><ref bean="serviceLoginClient"/></property>
 	<property name="serviceAdmin"><ref bean="serviceLoginAdmin"/></property>
+	<property name="servicePanier"><ref bean="servicePanier"/></property>
 </bean>
 
 <bean name="/ajoutPanierLivre" class="com.uvsq.colinebintou.ecommerce.action.AjoutPanierAction" singleton="false">
 	<property name="service"><ref bean="servicePanier"/></property>
-	<property name="serviceClient"><ref bean="serviceLoginClient"/></property>
 	<property name="serviceArt"><ref bean="serviceRecArt"/></property>
 	<property name="serviceModif"><ref bean="serviceGestionArt"/></property>
+</bean>
+
+<bean name="/afficherPanier" class="com.uvsq.colinebintou.ecommerce.action.AffichagePanierAction" singleton="false">
+</bean>
+
+<bean name="/valider" class="com.uvsq.colinebintou.ecommerce.action.ValiderPanierAction" singleton="false">
+	<property name="service"><ref bean="servicePanier"/></property>
 </bean>
 <!-- <import resource="/beans.xml"/> -->
 </beans>

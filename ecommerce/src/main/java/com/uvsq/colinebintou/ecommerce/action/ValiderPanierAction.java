@@ -13,48 +13,30 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.uvsq.colinebintou.ecommerce.modele.Client;
-import com.uvsq.colinebintou.ecommerce.modele.Livre;
 import com.uvsq.colinebintou.ecommerce.modele.Panier;
-import com.uvsq.colinebintou.ecommerce.service.ServiceModifArticleImpl;
 import com.uvsq.colinebintou.ecommerce.service.ServicePanierImpl;
-import com.uvsq.colinebintou.ecommerce.service.ServiceRechercheArticleImpl;
 
-public class AjoutPanierAction extends Action {
+public class ValiderPanierAction extends Action {
 	private ServicePanierImpl service;
-	private ServiceRechercheArticleImpl serviceArt;
-	private ServiceModifArticleImpl serviceModif;
 
 	public void setService(ServicePanierImpl service) {
 		this.service = service;
-	}
-	
-	public void setServiceArt(ServiceRechercheArticleImpl serviceArt) {
-		this.serviceArt = serviceArt;
-	}
-
-	public void setServiceModif(ServiceModifArticleImpl serviceModif) {
-		this.serviceModif = serviceModif;
 	}
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		System.out.println("suis dans affiche action"+ service);
 		HttpSession maSession = request.getSession(true); // si pas de session, en cree une
 		Client c = (Client) maSession.getAttribute("client");
-		System.out.println(request.getParameter("id"));
-		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(id);
-		Livre l = (Livre) serviceArt.findById(id);
-		System.out.println(l);
-		
 		Panier p = (Panier) maSession.getAttribute("sonPanier");
-		p.setClient(c);
-		service.ajoutPanier(l, p);
-		System.out.println("je suis ici");
-		System.out.println(p);
-		serviceModif.modifArticle(l, l.getQuantite()-1);
-		maSession.setAttribute("sonPanier", p);
+		service.validerPanier(p);
+		Panier p2 = new Panier();
+		p2.setClient(c);
+		p2.setPaye(false);
+		c.ajouter(p2);
+		service.creerPanier(p2);
+		maSession.setAttribute("sonPanier", p2);
 		maSession.setAttribute("client", c);
 		
-		return mapping.findForward("livres");
+		return mapping.findForward("achatValide");
 	}
 }

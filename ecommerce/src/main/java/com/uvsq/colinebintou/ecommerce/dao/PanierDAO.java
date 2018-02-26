@@ -22,11 +22,8 @@ public class PanierDAO extends HibernateDaoSupport implements DAO<Panier>{
 	}
 
 	public Panier update(Panier obj) {
-		Panier p = (Panier) getHibernateTemplate().get(Panier.class, obj.getId());
-		if (p != null){
-			getHibernateTemplate().update(obj);
-		}
-		return p;
+		getHibernateTemplate().update(obj);
+		return obj;
 	}
 
 	public void delete(Panier obj) {

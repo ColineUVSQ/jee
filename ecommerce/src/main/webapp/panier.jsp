@@ -1,4 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList" %> 
+<%@ page import="java.util.Set" %> 
+<%@ page import="java.util.Iterator" %> 
+
+<%@ page import="com.uvsq.colinebintou.ecommerce.modele.*" %> 
+<%@ page import="com.uvsq.colinebintou.ecommerce.service.*" %> 
+<%@ page import="javax.servlet.http.HttpSession" %> 
 <!DOCTYPE html>
+<jsp:useBean id="sonPanier" class="com.uvsq.colinebintou.ecommerce.modele.Panier" scope="session"></jsp:useBean>
+
 <html lang="en">
 
 <head>
@@ -183,72 +194,27 @@
 										<th>Articles</th>
 										<th></th>
 										<th class="text-center">Prix</th>
-										<th class="text-center">Quantité</th>
+										<th class="text-center">Quantit�</th>
 										<th class="text-center">Total</th>
 										<th class="text-right"></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-										<td class="details">
-											<a href="#">Nom de l'article</a>
-											<ul>
-												<li><span>caractéristiques</span></li>
-												
-											</ul>
-										</td>
-										<td class="price text-center"><strong>32.50</strong></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-										<td class="text-right"><button class="cancel-btn main-btn icon-btn"><i class="fa fa-trash"></i></button></td>
-									</tr>
-
-									<tr>
-										<td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-										<td class="details">
-											<a href="#">Nom de l'article</a>
-											<ul>
-												<li><span>Caractéristiques</span></li>
-												<li>
-											</ul>
-										</td>
-										<td class="price text-center"><strong>$32.50</strong></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-										<td class="text-right "><button class="main-btn icon-btn cancel-btn"><i class="fa fa-trash"></i>
-
-										</button></td>
-										
-									</tr>
-									<tr>
-										<td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-										<td class="details">
-											<a href="#">Nom de l'article</a>
-											<ul>
-												<li><span>Caractéristiques</span></li>
-												<li>
-											</ul>
-										</td>
-										<td class="price text-center"><strong>$32.50</strong></td>
-										<td class="qty text-center"><input class="input" type="number" value="1"></td>
-										<td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-										<td class="text-right "><button class="main-btn icon-btn cancel-btn"><i class="fa fa-trash"></i>
-
-										</button></td>
-										
-									</tr>
+									<%Iterator<IArticle> iterator = sonPanier.getArticles().iterator();
+									while (iterator.hasNext()) {
+									      Article myCurrentElement = (Article) iterator.next();
+									      out.println("<tr><td class='thumb'></td><td class='details'>"+myCurrentElement.getNom()+"<ul><li><span></span></li></ul></td><td class='price text-center'><strong>"+myCurrentElement.getPrix()+"</strong></td><td class='qty text-center'><input class='input' type='number' value='1'></td><td class='total text-center'><strong class='primary-color'>"+myCurrentElement.getPrix()+" Euros</strong></td><td class='text-right'><button class='cancel-btn main-btn icon-btn'><i class='fa fa-trash'></i></button></td></tr>");}%>
 								</tbody>
 								<tfoot>
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>TOTAL</th>
-										<th colspan="2" class="total">$97.50</th>
+										<th colspan="2" class="total"><%out.println(sonPanier.calculPrix()+" Euros");%></th>
 									</tr>
 								</tfoot>
 							</table>
 							<div class="pull-right">
-								<button class="primary-btn">Valider votre commande</button>
+								<form action="valider.do" method="post"><button type="submit" class="primary-btn">Valider votre commande</button></form>
 							</div>
 						</div>
 
