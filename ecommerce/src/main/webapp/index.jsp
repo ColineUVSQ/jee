@@ -80,6 +80,7 @@
 						<h4><% if(client.getNom() != null) {out.println("Bonjour, "+client.getNom());} %></h4>
 					<ul class="header-btns">
 						<!-- Account -->
+						
 						<li class="header-account dropdown default-dropdown">
 							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
 								
@@ -90,10 +91,9 @@
 							</div>
 							
 							<ul class="custom-menu">
-							
-								<li><a href="Login.jsp"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
-								<li><a href="Login.jsp"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
-							</ul>
+								<%if(client.getNom() == null){out.println("<li><a href='Login.jsp'><i class='fa fa-unlock-alt'></i>Se Connecter</a></li><li><a href='Login.jsp'><i class='fa fa-user-plus'></i>S'inscrire</a></li>");
+								}else{out.println("<li><form action='deconnexion.do' method='post'><i class='fa fa-unlock-alt'></i><button type='submit'>Se Déconnecter</button></form></li>");}%>
+								</ul>
 						</li>
 						<!-- /Account -->
 
