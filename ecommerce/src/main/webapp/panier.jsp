@@ -94,8 +94,8 @@
 							
 							<ul class="custom-menu">
 							
-								<li><a href="Login.html"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
-								<li><a href="Login.html"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
 							</ul>
 						</li>
 						<!-- /Account -->
