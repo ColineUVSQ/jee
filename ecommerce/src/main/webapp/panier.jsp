@@ -117,7 +117,7 @@
 									Iterator<IArticle> iterator = sonPanier.getArticles().iterator();
 									while (iterator.hasNext()) {
 									      Article myCurrentElement = (Article) iterator.next();
-									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros<span class='qty'>x"+myCurrentElement.getQuantite()+"</span></h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
+									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros</h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
 										}%>
 									<div class="shopping-cart-btns">
 										
@@ -192,7 +192,8 @@
 									<%Iterator<IArticle> iterator1 = sonPanier.getArticles().iterator();
 									while (iterator1.hasNext()) {
 									      Article myCurrentElement = (Article) iterator1.next();
-									      out.println("<tr><td class='thumb'></td><td class='details'>"+myCurrentElement.getNom()+"<ul><li><span></span></li></ul></td><td class='price text-center'><strong>"+myCurrentElement.getPrix()+"</strong></td><td class='qty text-center'><input class='input' type='number' value='1'></td><td class='total text-center'><strong class='primary-color'>"+myCurrentElement.getPrix()+" Euros</strong></td><td class='text-right'><button class='cancel-btn main-btn icon-btn'><i class='fa fa-trash'></i></button></td></tr>");}%>
+									      int id = myCurrentElement.getId();
+									      out.println("<tr><td class='thumb'></td><td class='details'>"+myCurrentElement.getNom()+"<ul><li><span></span></li></ul></td><td class='price text-center'><strong>"+myCurrentElement.getPrix()+"</strong></td><td class='qty text-center'><input class='input' type='number' value='1'></td><td class='total text-center'><strong class='primary-color'>"+myCurrentElement.getPrix()+" Euros</strong></td><td class='text-right'><form action='supprimerArtPanier.do?id="+id+"' method='post'><button type='submit' class='cancel-btn main-btn icon-btn'><i class='fa fa-trash'></i></button></td></tr>");}%>
 								</tbody>
 								<tfoot>
 									<tr>

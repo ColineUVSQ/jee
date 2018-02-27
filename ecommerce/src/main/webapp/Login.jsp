@@ -16,6 +16,7 @@
 	<title>coline&Bintou</title>
 
 	<!-- Google font -->
+	<link type="text/css" rel="stylesheet" href="css/css-perso.css" />
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
@@ -53,7 +54,7 @@
 				<div class="pull-left">
 					<!-- Logo -->
 					<div class="header-logo">
-						<a class="logo" href="index.html">
+						<a class="logo" href="index.jsp">
 							<h1>Coline&Bintou</h1>
 						</a>
 					</div>

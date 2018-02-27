@@ -27,6 +27,11 @@ public class AffichageDvdAction extends Action {
 		//ArrayList<Livre> livres = service.findAllLivre();
 		HttpSession maSession = request.getSession(true); // si pas de session, en cree une
 		maSession.setAttribute("lesDVD", service);
-		return mapping.findForward("page_dvd");
+		if(maSession.getAttribute("admin") == null) {
+			return mapping.findForward("page_dvd");
+		}
+		else {
+			return mapping.findForward("page_dvd_admin");
+		}
 	}
 }

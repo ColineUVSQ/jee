@@ -26,6 +26,11 @@ public class AffichageCdAction extends Action {
 		//ArrayList<Livre> livres = service.findAllLivre();
 		HttpSession maSession = request.getSession(true); // si pas de session, en cree une
 		maSession.setAttribute("lesCD", service);
-		return mapping.findForward("page_cd");
+		if(maSession.getAttribute("admin")== null) {
+			return mapping.findForward("page_cd");
+		}
+		else {
+			return mapping.findForward("page_cd_admin");
+		}
 	}
 }

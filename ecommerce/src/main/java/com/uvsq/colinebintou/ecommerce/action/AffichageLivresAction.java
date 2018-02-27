@@ -26,6 +26,11 @@ public class AffichageLivresAction extends Action{
 		//ArrayList<Livre> livres = service.findAllLivre();
 		HttpSession maSession = request.getSession(true); // si pas de session, en cree une
 		maSession.setAttribute("lesLivres", service);
-		return mapping.findForward("page_livres");
+		if(maSession.getAttribute("admin")== null) {
+			return mapping.findForward("page_livres");
+		}
+		else {
+			return mapping.findForward("page_livres_admin");
+		}
 	}
 }

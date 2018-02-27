@@ -54,12 +54,15 @@
        </action>
        <action path="/afficheLivres" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
        		<forward name="page_livres" path="/Livres.jsp"></forward>
+       		<forward name="page_livres_admin" path="/LivreAdmin.jsp"/>
        </action>
        <action path="/afficheCD" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
        		<forward name="page_cd" path="/CD.jsp"></forward>
+       		<forward name="page_cd_admin" path="/CDAdmin.jsp"/>
        </action>
        <action path="/afficheDVD" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
        		<forward name="page_dvd" path="/DVD.jsp"></forward>
+       		<forward name="page_dvd_admin" path="/DVDAdmin.jsp"/>
        </action>
        <action path="/inscription" type="org.springframework.web.struts.DelegatingActionProxy" name="param-inscription" validate="false">
        		<forward name="accueilClient" path="/index.jsp"></forward>
@@ -79,7 +82,11 @@
        </action>
        <action path="/valider" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
               <forward name="achatValide" path="/achatValide.jsp"></forward>
-       </action>	
+       </action>
+       <action path="/supprimerArtPanier" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+       		<forward name="panier" path="/panier.jsp"></forward>
+       </action>
+       
 <!--  quand on déclare une action, il faut faire référence à la classe DelegatingActionProxy, et plus la classe de l'action -->        
 <!--  exemple : <action path="/..." type="org.springframework.web.struts.DelegatingActionProxy"> -->     
     </action-mappings>

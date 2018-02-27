@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="com.uvsq.colinebintou.ecommerce.modele.*" %> 
+<!DOCTYPE html>
+<jsp:useBean id="admin" class ="com.uvsq.colinebintou.ecommerce.modele.Administrateur" scope="session"></jsp:useBean>
+
 <html lang="en">
 
 <head>
@@ -9,6 +15,7 @@
 	<title>coline&Bintou</title>
 
 	<!-- Google font -->
+	<link type="text/css" rel="stylesheet" href="css/css-perso.css" />
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
@@ -40,7 +47,7 @@
 				<div class="pull-left">
 					<!-- Logo -->
 					<div class="header-logo">
-						<a class="logo" href="index.html">
+						<a class="logo" href="adminHome.jsp">
 							<h1>Coline&Bintou</h1>
 						</a>
 					</div>
@@ -61,6 +68,8 @@
 					<!-- /Search -->
 				</div>
 				<div class="pull-right">
+				<h4><% if(admin.getNom() != null) {out.println("Bonjour, "+admin.getNom());} %></h4>
+					
 					<ul class="header-btns">
 						<!-- Account -->
 						<li class="header-account dropdown default-dropdown">
@@ -73,8 +82,8 @@
 							
 							<ul class="custom-menu">
 							
-								<li><a href="Login.html"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
-								<li><a href="Login.html"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
+								<li><a href="Login.jsp"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
 							</ul>
 
 						<li class="nav-toggle">
@@ -104,15 +113,12 @@
 
 
 						<ul class="menu-list">
-						<li><a href="LivreAdmin.html">Collections Livres</a></li>
-						<li><a href="CDAdmin.html">Collections CD</a></li>
-						<li><a href="DVDAdmin.html">Collections DVD</a></li>
+						<li><form action="afficheLivres.do" method="post"><button type="submit"  class="perso">Collections Livres</button></form></li>
+						<li><form action="afficheCD.do" method="post"><button type="submit" class="perso">Collections CD</button></form></li>
+						<li><form action="afficheDVD.do" method="post"><button type="submit" class="perso">Collections DVD</button></form></li>
 						<li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Admin <i class="fa fa-caret-down"></i></a>
 							<ul class="custom-menu">
-								<li><a href="ajoutArticle.html">Ajouter</a></li>
-								<li><a href="#">Modifier </a></li>
-								<li><a href="#">Supprimer</a></li>
-								
+								<li><a href="ajoutArticle.jsp">Ajouter</a></li>
 							</ul>
 						</li>
 						</ul>
@@ -148,7 +154,7 @@
 
 							<div class="form-group ">
 						      <select id="inputState" class="form-control" name="type">
-						        <option selected>Choisir la catÃ©gorie de l'article...</option>
+						        <option selected>Choisir la catégorie de l'article...</option>
 						        <option>Livres</option>
 						       <option>CD</option>
 						        <option>DVD</option>

@@ -44,5 +44,11 @@
 <bean name="/valider" class="com.uvsq.colinebintou.ecommerce.action.ValiderPanierAction" singleton="false">
 	<property name="service"><ref bean="servicePanier"/></property>
 </bean>
+
+<bean name="/supprimerArtPanier" class="com.uvsq.colinebintou.ecommerce.action.SupprimerArtPanierAction" singleton="false">
+	<property name="service"><ref bean="servicePanier"/></property>
+	<property name="serviceArt"><ref bean="serviceRecArt"></ref></property>
+	<property name="serviceModif"><ref bean="serviceGestionArt"/></property>
+</bean>
 <!-- <import resource="/beans.xml"/> -->
 </beans>

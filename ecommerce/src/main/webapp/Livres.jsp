@@ -119,7 +119,7 @@
 									Iterator<IArticle> iterator = sonPanier.getArticles().iterator();
 									while (iterator.hasNext()) {
 									      Article myCurrentElement = (Article) iterator.next();
-									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros<span class='qty'>x"+myCurrentElement.getQuantite()+"</span></h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
+									      out.println("<div class='product product-widget'><div class='product-body'><h3 class='product-price'>"+myCurrentElement.getPrix()+" Euros</h3><h2 class='product-name'><a href='#'>"+myCurrentElement.getNom()+"</a></h2></div><button class='cancel-btn'><i class='fa fa-trash'></i></button></div>");
 										}%>
 									<div class="shopping-cart-btns">
 										
