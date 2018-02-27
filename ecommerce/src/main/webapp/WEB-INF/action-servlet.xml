@@ -45,10 +45,11 @@
 	<property name="service"><ref bean="servicePanier"/></property>
 </bean>
 
-<bean name="/supprimerArtPanier" class="com.uvsq.colinebintou.ecommerce.action.SupprimerArtPanierAction" singleton="false">
+<!-- <bean name="/supprimerArtPanier" class="com.uvsq.colinebintou.ecommerce.action.SupprimerArtPanierAction" singleton="false">
 	<property name="service"><ref bean="servicePanier"/></property>
 	<property name="serviceArt"><ref bean="serviceRecArt"></ref></property>
 	<property name="serviceModif"><ref bean="serviceGestionArt"/></property>
-</bean>
+</bean> -->
 <!-- <import resource="/beans.xml"/> -->
+<bean name="/recherche" class="com.uvsq.colinebintou.ecommerce.action.RechercheAction"></bean>
 </beans>

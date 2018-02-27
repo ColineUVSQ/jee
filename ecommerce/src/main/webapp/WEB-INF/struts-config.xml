@@ -83,8 +83,11 @@
        <action path="/valider" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
               <forward name="achatValide" path="/achatValide.jsp"></forward>
        </action>
-       <action path="/supprimerArtPanier" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+      <!--  <action path="/supprimerArtPanier" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
        		<forward name="panier" path="/panier.jsp"></forward>
+       </action> -->
+       <action path="/recherche" type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+       		<forward name="recherche" path="/Recherche.jsp"></forward>
        </action>
        
 <!--  quand on déclare une action, il faut faire référence à la classe DelegatingActionProxy, et plus la classe de l'action -->        

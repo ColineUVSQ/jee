@@ -58,11 +58,17 @@ public class ConnexionAction extends Action{
 				return mapping.findForward("erreur");
 			}
 			else {
-				Panier p = new Panier();
-				p.setClient(c);
-				p.setPaye(false);
-				servicePanier.creerPanier(p);
 				HttpSession maSession = request.getSession(true); // si pas de session, en cree une
+				Panier p;
+				if(servicePanier.findPanierActuel(c)== null) {
+					p = new Panier();
+					p.setClient(c);
+					p.setPaye(false);
+					servicePanier.creerPanier(p);
+				}
+				else {
+					p = servicePanier.findPanierActuel(c);
+				}
 				maSession.setAttribute("client", c);	
 				maSession.setAttribute("sonPanier", p);
 				return mapping.findForward("accueilClient");

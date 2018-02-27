@@ -68,8 +68,8 @@
 
 					<!-- Search -->
 					<div class="header-search">
-						<form>
-							<input class="input search-input" type="text" placeholder="Recherche">
+						<form action="recherche.do" method="post">
+							<!-- <input class="input search-input" type="text" placeholder="Recherche"> -->
 							<!--<select class="input search-categories">
 								<option value="0">Toutes Categories</option>
 								<option value="1">Livres</option>
@@ -101,7 +101,7 @@
 						<!-- /Account -->
 
 						<!-- Cart -->
-						<li class="header-cart dropdown default-dropdown">
+					<li class="header-cart dropdown default-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
@@ -193,7 +193,7 @@
 									while (iterator1.hasNext()) {
 									      Article myCurrentElement = (Article) iterator1.next();
 									      int id = myCurrentElement.getId();
-									      out.println("<tr><td class='thumb'></td><td class='details'>"+myCurrentElement.getNom()+"<ul><li><span></span></li></ul></td><td class='price text-center'><strong>"+myCurrentElement.getPrix()+"</strong></td><td class='qty text-center'><input class='input' type='number' value='1'></td><td class='total text-center'><strong class='primary-color'>"+myCurrentElement.getPrix()+" Euros</strong></td><td class='text-right'><form action='supprimerArtPanier.do?id="+id+"' method='post'><button type='submit' class='cancel-btn main-btn icon-btn'><i class='fa fa-trash'></i></button></td></tr>");}%>
+									      out.println("<tr><td class='thumb'></td><td class='details'>"+myCurrentElement.getNom()+"<ul><li><span></span></li></ul></td><td class='price text-center'><strong>"+myCurrentElement.getPrix()+"</strong></td><td class='qty text-center'><input class='input' type='number' value='1'></td><td class='total text-center'><strong class='primary-color'>"+myCurrentElement.getPrix()+" Euros</strong></td><td class='text-right'></td></tr>");}%>
 								</tbody>
 								<tfoot>
 									<tr>

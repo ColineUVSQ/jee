@@ -2,6 +2,7 @@ package com.uvsq.colinebintou.ecommerce.service;
 
 import com.uvsq.colinebintou.ecommerce.dao.PanierDAO;
 import com.uvsq.colinebintou.ecommerce.modele.Article;
+import com.uvsq.colinebintou.ecommerce.modele.Client;
 import com.uvsq.colinebintou.ecommerce.modele.Panier;
 
 public class ServicePanierImpl implements ServicePanier{
@@ -37,6 +38,10 @@ public class ServicePanierImpl implements ServicePanier{
 
 	public void suppPanier(Panier p) {
 		dao.delete(p);
+	}
+
+	public Panier findPanierActuel(Client c) {
+		return dao.findByIdClient(c.getId());
 	}
 	
 }

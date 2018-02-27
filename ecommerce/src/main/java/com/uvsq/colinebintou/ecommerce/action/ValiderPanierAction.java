@@ -32,7 +32,7 @@ public class ValiderPanierAction extends Action {
 		Panier p2 = new Panier();
 		p2.setClient(c);
 		p2.setPaye(false);
-		c.ajouter(p2);
+		//c.ajouter(p2);
 		service.creerPanier(p2);
 		maSession.setAttribute("sonPanier", p2);
 		maSession.setAttribute("client", c);
