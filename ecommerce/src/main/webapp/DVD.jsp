@@ -68,9 +68,9 @@
 
 					<!-- Search -->
 					<div class="header-search">
-						<form>
-							<input class="input search-input" type="text" placeholder="Recherche">
-							<!--<select class="input search-categories">
+						<form action="recherche.do" method="post">	
+<!-- 							<input class="input search-input" type="text" placeholder="Recherche">
+ -->							<!--<select class="input search-categories">
 								<option value="0">Toutes Categories</option>
 								<option value="1">Livres</option>
 								<option value="1">CD</option>
@@ -94,9 +94,9 @@
 							
 							<ul class="custom-menu">
 							
-								<li><a href="Login.jsp"><i class="fa fa-unlock-alt"></i>Se Connecter</a></li>
-								<li><a href="Login.jsp"><i class="fa fa-user-plus"></i>S'inscrire</a></li>
-							</ul>
+								<%if(client.getNom() == null){out.println("<li><a href='Login.jsp'><i class='fa fa-unlock-alt'></i>Se Connecter</a></li><li><a href='Login.jsp'><i class='fa fa-user-plus'></i>S'inscrire</a></li>");
+								}else{out.println("<li><form action='deconnexion.do' method='post'><i class='fa fa-unlock-alt'></i><button type='submit'>Se Déconnecter</button></form></li>");}%>
+								</ul>
 						</li>
 						<!-- /Account -->
 

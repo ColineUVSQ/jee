@@ -51,6 +51,9 @@
 	<property name="serviceModif"><ref bean="serviceGestionArt"/></property>
 </bean> -->
 <!-- <import resource="/beans.xml"/> -->
-<bean name="/recherche" class="com.uvsq.colinebintou.ecommerce.action.RechercheAction"></bean>
+<bean name="/recherche" class="com.uvsq.colinebintou.ecommerce.action.RechercheAction">
+	<property name="service"><ref bean="serviceRecArt"/></property>
+</bean>
+
 <bean name="/deconnexion" class="com.uvsq.colinebintou.ecommerce.action.DeconnexionAction"></bean>
 </beans>

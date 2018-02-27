@@ -98,6 +98,7 @@
 						<!-- /Account -->
 
 						<!-- Cart -->
+						
 						<li class="header-cart dropdown default-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
@@ -106,7 +107,7 @@
 								</div>
 								
 							</a>
-							<div class="custom-menu">
+							<div class='custom-menu'>
 								<div id="shopping-cart">
 									<div class="shopping-cart-list">
 									<% 
@@ -291,6 +292,7 @@
 	<script src="js/nouislider.min.js"></script>
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/cache.js"></script>
 
 </body>
 
